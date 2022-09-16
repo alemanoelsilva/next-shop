@@ -1,13 +1,21 @@
+// fetching data on client side (useEffect) from a internal api
 import type { NextPage } from 'next'
 import Head from 'next/head'
-
-const products = [
-  { id: 1, title: 'first'},
-  { id: 2, title: 'second'},
-  { id: 3, title: 'third'},
-]
+import { useEffect, useState } from 'react'
+import { getProducts, Product } from '../lib/products'
 
 const HomePage: NextPage = () => {
+
+  const [products, setProducts] = useState<Product[]>([])
+
+  useEffect(() => {
+    (async () => {
+      const response = await fetch('/api/products')
+      const products = await response.json()
+      setProducts(products)
+    })()
+  }, [])
+
   return (
     <>
       <Head>
@@ -19,7 +27,7 @@ const HomePage: NextPage = () => {
         <ul>
           {products.map(product => (
             <li key={product.id}>
-              {product.title}
+              {product.id} | {product.title}
             </li>
           ))}
         </ul>
