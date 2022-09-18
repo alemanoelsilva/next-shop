@@ -1,13 +1,11 @@
-import '../styles/globals.css'
-import { AppProps } from 'next/app'
-import { ButtonHTMLAttributes, FC } from 'react'
+import React from "react";
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  // no custom props
-}
+const Title = ({ children }: React.PropsWithChildren) => {
+  return (
+    <h1 className="text-2xl pb-4">
+      {children}
+    </h1>
+  );
+};
 
-const Title: FC<ButtonProps> = ({  }) => {
-  return null
-}
-
-export default Title
+export default Title;
