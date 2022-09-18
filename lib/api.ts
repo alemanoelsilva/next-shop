@@ -1,3 +1,4 @@
+import { HTTPMethod } from "http-method-enum";
 export class ApiError extends Error {
   status: number;
   constructor(url: string, status: number) {
@@ -11,7 +12,7 @@ export class ApiError extends Error {
 }
 
 type fetchOptions = {
-  method?: "POST" | "GET" | "PATCH" | "PUT" | 'DELETE',
+  method?: HTTPMethod,
   headers?: any,
   body?: string,
 }

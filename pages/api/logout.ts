@@ -1,14 +1,11 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
 import cookie from "cookie";
-import { fetchJson } from "../../lib/api";
 
-const CMS_HOST = process.env.CMS_HOST;
-
-export default async function handler(
+const handler: NextApiHandler = async (
   req: NextApiRequest,
   res: NextApiResponse<{}>
-) {
+) => {
   try {
     res
       .setHeader(
@@ -24,3 +21,5 @@ export default async function handler(
     res.status(401).end();
   }
 }
+
+export default handler

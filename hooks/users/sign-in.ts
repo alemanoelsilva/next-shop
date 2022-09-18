@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "react-query";
 import { fetchJson } from "../../lib/api";
+import { HTTPMethod } from "http-method-enum";
 
 const USER_QUERY_KEY = process.env.USER_QUERY_KEY || 'user';
 
@@ -21,7 +22,7 @@ export function useEmailSignIn(): IEmailSignIn {
   // react-mutation -> post/put/patch/delete...
   const mutation = useMutation(({ email, password }: EmailSignIn) =>
     fetchJson("/api/login", {
-      method: "POST",
+      method: HTTPMethod.POST,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
     })
